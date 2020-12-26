@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update Repository Index
+    yum:
+      update_cache: yes
+
+  - name: Install Nginx Package
+    yum:
+      name: mariadb
+      state: present
+
+  - name: Install php  for apache
+    yum:
+      name: php
+      state: latest
