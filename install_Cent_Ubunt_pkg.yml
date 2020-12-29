@@ -1,0 +1,40 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update Repository Index
+    yum:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Install httpd Package
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Install php  for apache
+    yum:
+      name: php
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Update Repository Index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install Apache2 Package
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install php  for apache
+    apt:
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+

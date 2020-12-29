@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update Repository Index
+    yum:
+      update_cache: yes
+
+  - name: Removing Nginx Package
+    yum:
+      name: mariadb
+      state: absent
+
+  - name: Removing httpd Package
+    yum:
+      name: httpd
+      state: absent
+
+  - name: Removing php  for apache
+    yum:
+      name: php
+      state: absent
